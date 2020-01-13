@@ -1,0 +1,50 @@
+var k_prv = "{REEMPLACE PRV}";
+var k_pub = "{REEMPLACE PUB}";
+
+//esta funcion es para encryptar
+var encrypt = function(text){
+
+    // Encrypt with the public key...
+    var encrypt = new JSEncrypt();
+    encrypt.setPublicKey(k_pub);
+    var encrypted = encrypt.encrypt(text);
+
+    return encrypted;
+};
+
+//esta funcion es para desencryptar
+var decrypt = function(ciff){
+
+    // Decrypt with the private key...
+    var decrypt = new JSEncrypt();
+    decrypt.setPrivateKey(k_prv);
+    var uncrypted = decrypt.decrypt(ciff);
+
+    return uncrypted;
+};
+$(function() {
+    $('#encrypt').click(function() {
+        var offset = document.getElementsByClassName("_1mf _1mj")[0].getAttribute("data-offset-key");
+        var text = encrypt(document.getElementsByClassName("_1mf _1mj")[0].innerText)
+
+        document.getElementsByClassName("_1mf _1mj")[0].innerHTML = '<span data-offset-key="'+offset+'"><span data-text="true">'+ text +'</span></span>';
+    });
+    $('#decrypt').click(function() {
+        var n = document.getElementsByClassName("_aok _7i2m").length;
+        for (var i = 0; i < n; i++) {
+          document.getElementsByClassName("_3oh- _58nk")[i].innerText = document.getElementsByClassName("_aok _7i2m")[i].getAttribute("aria-label");
+        }
+        
+        var n = document.getElementsByClassName("_3oh- _58nk").length;
+        for (var i = 0; i < n; i++) {
+          //document.getElementsByClassName("texto")[i].innerText = "GAEACITO";
+          document.getElementsByClassName("_3oh- _58nk")[i].innerText = decrypt(document.getElementsByClassName("_3oh- _58nk")[i].innerText)
+        }
+    });
+});
+
+document.getElementsByClassName("_4rv3 _7og6")[0].insertAdjacentHTML("beforeend","<button id=\"decrypt\" type=\"button\" > decrypt</button><button id=\"encrypt\" type=\"button\" > encrypt</button>");
+
+$(window).ready(function(){
+    $("body").animate({ scrollTop: $(document).height()}, 1000);    
+});
