@@ -4,4 +4,6 @@
 
 {usage}
 
-{desarrolladores}
+## Desarrolladores
+- Eduardo Sarria
+- Daniel Mena
