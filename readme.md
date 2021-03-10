@@ -7,3 +7,4 @@
 ## Desarrolladores
 - Eduardo Sarria
 - Daniel Mena
+- Leonardo Sulca
